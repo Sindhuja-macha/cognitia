@@ -76,7 +76,7 @@ function App() {
           type="submit" 
           disabled={loading} 
           style={{ 
-            marginTop: '25px', // Space between textbox and button
+            marginTop: '25px', 
             padding: '12px 40px', 
             backgroundColor: loading ? '#a0c4ff' : '#4A90E2', 
             color: 'white', 
@@ -109,9 +109,16 @@ function App() {
             lineHeight: '1.7', 
             color: '#444', 
             margin: 0,
-            fontSize: '16px' 
+            fontSize: '16px',
+            whiteSpace: 'pre-wrap' 
           }}>
-            {answer}
+            {/* Logic to find **text** and convert it to bold <b> tags */}
+            {answer.split(/(\*\*.*?\*\*)/g).map((part, i) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return <b key={i} style={{ color: '#000', fontWeight: 'bold' }}>{part.slice(2, -2)}</b>;
+              }
+              return part;
+            })}
           </p>
         </div>
       )}
