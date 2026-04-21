@@ -1,16 +1,20 @@
-# React + Vite
+# Cognitia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cognitia is an AI-driven assistant designed to bridge the gap between complex technology and practical applications, with a specific focus on supporting agricultural needs. Built with a Flask backend and MongoDB storage, it provides a scalable and efficient way to interact with AI logic.
 
-Currently, two official plugins are available:
+## 🚀 Progress Achieved
+- **Backend Core:** Developed a functional API using **Flask**.
+- **Data Persistence:** Integrated **MongoDB** for flexible, NoSQL data management.
+- **Workflow:** Established a seamless development-to-cloud pipeline using **VS Code** and **GitHub**.
+- **Architecture:** Designed a logical flow that connects user inputs to AI-driven insights.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🧠 Key Learnings
+- **Troubleshooting:** Mastered database connection handling and resolving server errors.
+- **Modularity:** Learned to structure code by separating AI logic from backend routing.
+- **Version Control:** Gained proficiency in managing remote repositories and cloud deployments.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- **Language:** Python
+- **Framework:** Flask
+- **Database:** MongoDB
+- **Tools:** VS Code, GitHub
