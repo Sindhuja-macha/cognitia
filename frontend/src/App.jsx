@@ -6,7 +6,7 @@ function App() {
   const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // This handles switching between local development and your deployed Vercel backend
+  // Use Vercel Environment Variable or fallback to localhost for development
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   const handleAsk = async (e) => {
@@ -17,14 +17,15 @@ function App() {
     setAnswer(''); 
 
     try {
-      // Sends a single question to the backend
+      // Sends the question to your LIVE Vercel backend
       const response = await axios.post(`${API_URL}/api/ask`, { question });
       
-      // Displays the AI response from the backend
+      // Displays the AI response
       setAnswer(response.data.answer);
     } catch (error) {
       console.error("Error connecting to backend:", error);
-      setAnswer("Error: Could not reach the AI server. Make sure your backend is running!");
+      // Detailed error message to help you debug in the browser
+      setAnswer("Error: Could not reach the AI server. Check your Vercel Environment Variables and CORS settings!");
     } finally {
       setLoading(false);
     }
@@ -105,21 +106,21 @@ function App() {
           <strong style={{ color: '#4A90E2', display: 'block', marginBottom: '10px' }}>
             AI Assistant
           </strong>
-          <p style={{ 
+          <div style={{ 
             lineHeight: '1.7', 
             color: '#444', 
             margin: 0,
             fontSize: '16px',
             whiteSpace: 'pre-wrap' 
           }}>
-            {/* Logic to find **text** and convert it to bold <b> tags */}
+            {/* Logic to handle bold text formatting from AI response */}
             {answer.split(/(\*\*.*?\*\*)/g).map((part, i) => {
               if (part.startsWith('**') && part.endsWith('**')) {
                 return <b key={i} style={{ color: '#000', fontWeight: 'bold' }}>{part.slice(2, -2)}</b>;
               }
               return part;
             })}
-          </p>
+          </div>
         </div>
       )}
       
