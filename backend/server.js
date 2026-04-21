@@ -97,3 +97,4 @@ if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
     console.log(`🚀 Server live at http://localhost:${PORT}`);
   });
 }
+module.exports = app;
