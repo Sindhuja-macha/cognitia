@@ -2,18 +2,22 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); 
 const { Groq } = require('groq-sdk');
-require("dotenv").config(); // Standard config works for both local and Vercel
+require("dotenv").config(); 
 
 const app = express();
 
 // ================= Middleware =================
-app.use(cors()); 
+// UPDATED: Explicit CORS configuration to allow your frontend
+app.use(cors({
+  origin: "https://cognitia-frontend1.vercel.app",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(express.json());
 
 // ================= MongoDB Connection =================
 mongoose.set("strictQuery", true);
 
-// Note: On Vercel, MONGO_URI is added via the Dashboard, not a file.
 if (process.env.MONGO_URI) {
   mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("✅ MongoDB Connected"))
@@ -62,10 +66,14 @@ app.post('/api/ask', async (req, res) => {
   }
 });
 
-// ================= Server Start =================
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+// ================= Vercel Compatibility =================
+// IMPORTANT: Vercel needs the app exported to handle the serverless routing
+module.exports = app;
 
-// REMOVED: Duplicate cors code from the bottom
+// Keep this for local development
+const PORT = process.env.PORT || 5000;
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
