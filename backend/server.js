@@ -8,7 +8,7 @@ const app = express();
 
 // ================= Middleware =================
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "https://cognitia-frontend1.vercel.app",
+  origin: process.env.FRONTEND_URL || "https://cognitia-five.vercel.app",
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true
 }));
@@ -87,14 +87,14 @@ app.get('/api/ask', (req, res) => {
     message: "Use POST to send question"
   });
 });
+// =
 // ================= Vercel Export =================
 module.exports = app;
 
-// Local development
+// Local development only
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 Server live at http://localhost:${PORT}`);
   });
 }
-module.exports = app;
